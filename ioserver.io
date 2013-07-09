@@ -1,10 +1,10 @@
 WebRequest := Object clone do(
     handleSocket := method(aSocket,
         aSocket streamReadNextChunk
-        request := aSocket readBuffer betweenSeq("GET ", " HTTP") prependSeq(".")
-        request = if(request == "./", "./index.html", request)
-        f := File with(request) 
-        request println
+        path := aSocket readBuffer betweenSeq("GET ", " HTTP") prependSeq(".")
+        path = if(path == "./", "./index.html", path)
+        f := File with(path)
+        path println
         if(f exists,
             aSocket streamWrite("HTTP/1.1 200 OK\n\n"); f streamTo(aSocket),
             aSocket streamWrite("HTTP/1.1 404 Not Found\n\nNot Found\n")
