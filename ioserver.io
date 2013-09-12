@@ -14,7 +14,7 @@ WebRequest := Object clone do(
 )
 
 WebServer := Server clone do(
-    setPort(8000)
+    setPort(8080)
     handleSocket := method(aSocket, 
         WebRequest clone asyncSend(handleSocket(aSocket))
     )
